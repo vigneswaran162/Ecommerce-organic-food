@@ -32,6 +32,10 @@
 <div class="modal-box p-3" [ngClass]="{'show': isModalOpen}">
     <h5><i class="fa-solid fa-cart-shopping fa-bounce"></i> Your Cart ({{productslength}})</h5>
       <div class="contain-box modal-box-contain" >
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="font-size: 12px;" *ngIf="showToast">
+           Your Cart is Empty
+          </div>
+
         <div class="card p-2 mb-3 " *ngFor="let item of CartDetailsDet;let i = index " style="width: 18rem;">
           <div class="contain d-flex align-items-center justify-content-between">
             <div class="" style="width: 8rem;">
@@ -59,3 +63,8 @@
       <button class="btn-bottom" (click)="checkout()">CHECK OUT</button>
      </div>
   </div>
+
+  <div class="loading-overlay" *ngIf="isLoading">
+    <div class="loading-spinner"> <img src="/assets/healthy-food.gif"  class="img-fluid loadimg"></div>
+  </div>
+  

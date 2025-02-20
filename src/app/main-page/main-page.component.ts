@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { Router } from '@angular/router';
 import { ProductsService } from '../../services/products.service';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-main-page',
-  imports: [NavbarComponent,FormsModule,CommonModule],
+  imports: [NavbarComponent,FormsModule,CommonModule,NgIf],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.css'
 })
@@ -19,6 +19,8 @@ export class MainPageComponent implements OnInit {
   isModalOpen = false;
   isLoading =false
 
+  @ViewChild(NavbarComponent) navbar!: NavbarComponent;
+
   CartDetailsDet:any
 
 
@@ -26,9 +28,12 @@ export class MainPageComponent implements OnInit {
 
 
   async ngOnInit() {
+    this.isLoading = true
     await this.GetProducts()
     this.CartDetails()
     this.productslength = this.service.getProductslength();
+    this.isLoading = false
+
   }
 
 
@@ -78,7 +83,7 @@ export class MainPageComponent implements OnInit {
 
   async AddCart(item:any){
     this.service.addToCart(item);
-    this.productslength = this.service.getProductslength();
+    this.navbar.callNavbar();
     this.AddCartDetails = this.service.GetCartDetails();
     this.CartDetails()
   }
@@ -135,14 +140,7 @@ export class MainPageComponent implements OnInit {
   
 
   
-  checkout(){
-    if(this.CartDetails.length >0){
-    this.router.navigate(['/CheckOut'])
-    }else{
-      // this.Toast.showError('Your Cart is Empty','')
-  
-    }
-  }
+
 
   BuyNow(item:any){
     this.service.addToCart(item);

@@ -99,7 +99,7 @@ ul li a:hover{
     top: 70px !important;
     right: 0;
     transition: right 0.5s ease-in-out;
-    z-index: 2 !important;
+    z-index: 9999 !important;
 }
  .modal-box.show{
     right: 0 !important;
@@ -153,7 +153,7 @@ ul li a:hover{
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 5 !important;
+    z-index: 9999 !important;
   }
   
 .loadimg{
@@ -178,3 +178,35 @@ ul li a:hover{
     color: #fff !important;
     font-weight: 600 !important;
 }
+
+
+
+@media only screen and (max-width: 450px) {
+    .about-contain{
+        text-align: justify !important;
+        font-size: 10px !important;
+    }
+
+    .modal-box{
+        position: fixed;
+        width: 350px !important;
+        right: -350px !important; 
+        width: 300px;
+        height: 100vh;
+        background-color: #ffff !important;
+        top: 50px !important;
+        right: 0;
+        transition: right 0.5s ease-in-out;
+        z-index: 2 !important;
+    }
+     .modal-box.show{
+        right: 0 !important;
+    } 
+    .btn-bottom{
+        padding: 5px  !important;
+        border: none !important;
+        color: #fff !important;
+        font-size: 12px !important;
+    }
+  }
+

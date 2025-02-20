@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit{
 
   isModalOpen = false;
   isLoading =false
@@ -17,11 +18,29 @@ export class NavbarComponent {
   ProctDetails: any;
   AddCartDetails:any;
   CartDetailsDet:any
-  constructor(private service:ProductsService){}
-
+  showToast: boolean = false;
+  constructor(private service:ProductsService ,private cdr:ChangeDetectorRef,private router:Router){
+  }
+  ngOnInit(): void {
+    this.productslength = this.service.getProductslength();
+  }
 
 
   checkout(){
+    if(this.productslength != 0){
+    this.router.navigate(['/CheckOut'])
+    }else{
+      this.showToast = true;
+    setTimeout(() => {
+      this.showToast = false;
+    }, 3500);  
+    }
+  }
+  callNavbar(){
+    this.productslength = this.service.getProductslength();
+    console.log(this.productslength,'56')
+    this.cdr.detectChanges();
+
 
   }
 
@@ -53,11 +72,14 @@ export class NavbarComponent {
   }
 
   async onClickModel(){
+    this.isLoading =true
     this.isModalOpen = !this.isModalOpen
     await this.GetProducts()
     this.productslength = this.service.getProductslength();
     this.AddCartDetails = this.service.GetCartDetails();
     this.CartDetails()
+    this.isLoading =false
+
   }
 
 

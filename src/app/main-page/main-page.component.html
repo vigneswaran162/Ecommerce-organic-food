@@ -55,7 +55,7 @@
        
 
           <div class="shadow  card box-img p-3" style="width: 18rem;"  *ngFor="let item of ProctDetails ">
-            <img [src]="item.ProductImage" class="card-img-top" alt="Tomato">
+            <img [src]="item.ProductImage" class="card-img-top P-3" alt="Tomato">
             <div class="text-con">
               <h5 class="text-center">{{item.ProductName}}</h5>
               <div class="text-con d-flex align-items-center justify-content-between">
@@ -103,3 +103,45 @@
   
     </div>
   </div>
+
+  <footer>
+    <div class="container bg-light ">
+        <div class="row">
+            <div class="col-md-4  mt-5">
+              <h5 class="mb-2"><i class="fa-solid fa-leaf"></i> ORGANIC</h5>
+              <span>437,Valluvar Nagar 3rd ,</span> <br>
+              <span>Annathana patti,</span> <br>
+              <span>Salem-636002</span>
+
+            </div>
+            <div class="col-md-4 mt-5">
+                <h5 class="mb-2">Quick Links</h5>
+                <li>
+                    <a href="#home">Hoem</a>
+                </li>
+                <li>
+                    <a href="#Category">Category</a>
+                </li>
+                <li>
+                    <a href="#About">About us</a>
+                </li>
+                
+            </div>
+            <div class="col-md-4 mt-5">
+                <h5 class="mb-2">Contact Us</h5>
+                <span class="mb-3"><i class="fa-solid fa-envelope me-2"></i>  vigneswaran162gmail.com</span><br>
+                <span class="mb-3"><i class="fa-solid fa-phone me-2"></i>  9629108882</span> <br>
+                <span class="mb-3"><i class="fa-brands fa-instagram"></i> <i class="fa-brands fa-facebook mx-2"></i> <i class="fa-brands fa-linkedin"></i></span>
+            </div>
+            <div class="col-md-12 text-center mt-5 mb-2 text-capitalize">
+              <p>all rights reversed by vigneswaran</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+  <div class="loading-overlay" *ngIf="isLoading">
+    <div class="loading-spinner"> <img src="/assets/healthy-food.gif"  class="img-fluid loadimg"></div>
+  </div>
+  
