@@ -1,0 +1,61 @@
+
+<nav class="navbar navbar-expand-lg   px-3 shadow fixed-top py-2">
+    <div class="container-fluid">
+      <a class="navbar-brand text-white" href="#"><i class="fa-solid fa-leaf"></i> ORGANIC</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa-solid fa-list"></i>
+            </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 px-5 ">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#Category">Category</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#About">About us</a>
+          </li>
+  
+          <li class="nav-item">
+            <a class="nav-link" href="#contact" >Contact Us</a>
+          </li>
+        </ul>
+       
+      </div>
+      <button class="btn13" (click)="onClickModel()"><i class="fa-solid fa-cart-shopping"></i>  <span class="badge bg-danger mt-2 p-1 position-absolute" *ngIf="productslength != 0">{{productslength}}</span></button>
+    </div>
+  </nav>
+
+
+    
+<div class="modal-box p-3" [ngClass]="{'show': isModalOpen}">
+    <h5><i class="fa-solid fa-cart-shopping fa-bounce"></i> Your Cart ({{productslength}})</h5>
+      <div class="contain-box modal-box-contain" >
+        <div class="card p-2 mb-3 " *ngFor="let item of CartDetailsDet;let i = index " style="width: 18rem;">
+          <div class="contain d-flex align-items-center justify-content-between">
+            <div class="" style="width: 8rem;">
+              <img [src]="item.ProductImage" class="img-fluid p-3" alt="">
+            </div>
+            <div class="contain" style="width: 12rem;">
+             <h5 class="carttext1">{{item.ProductName}}</h5>
+             <h6 class="carttext1 text-muted">₹ {{item.Rate}}</h6>
+            <div class="cart-contain d-flex align-items-center justify-content-between">
+              <div class="input-box input-group" style="width: 5rem;">
+                <button class="cart-btn" (click)="minus(item)"><i class="fa-solid fa-minus"></i></button>
+                <input type="text" [(ngModel)]="item.CartQuantity" class="form-control form-control-sm text-center border-0 cart-input" [minlength]="1" [maxlength]="2" readonly>
+                <button class="cart-btn" (click)="add(item)"><i class="fa-solid fa-plus"></i></button>
+              </div>   
+              <div class="delete-btn mx-3">
+                <i class="fa-solid fa-trash text-danger" (click)="removeFromCart(i)"></i>
+              </div>
+            </div>  
+      
+            </div>
+          </div>
+         </div>
+      </div>
+     <div class="fixed-Bottom mt-2">
+      <button class="btn-bottom" (click)="checkout()">CHECK OUT</button>
+     </div>
+  </div>

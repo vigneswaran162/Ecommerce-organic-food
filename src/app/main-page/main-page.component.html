@@ -1,0 +1,105 @@
+<app-navbar></app-navbar>
+  
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 img-box" id="home">
+        <div class="text-content p-4 ">
+          <h2><i class="fa-solid fa-quote-left"></i> Let food be thy medicine and medicine be thy food <i class="fa-solid fa-quote-right"></i></h2>
+          <button class="btn1">explore now</button>
+        </div>
+      </div>
+    
+  
+  
+      <div class="col-md-12 p-5" id="Category">
+        <div class="row d-flex align-items-center justify-content-evenly ">
+  
+          <div class="col-md-12 mb-5">
+            <h2 class="title">Our Category</h2>
+          </div>
+        <div class="col-md-3 item-box shadow" (click)="SelectCategory('vegetables')">
+          <img src="/assets/cat4.jpg" alt="" class="img-fluid">
+        </div>
+        <div class="col-md-3 item-box shadow"  (click)="SelectCategory('fruits')">
+          <img src="/assets/cat1.jpg" alt="" class="img-fluid">
+        </div>
+  
+        <div class="col-md-3 item-box shadow"  (click)="SelectCategory('Spices')">
+          <img src="/assets/cat3.jpg" alt="" class="img-fluid">
+        </div>
+        </div>
+      </div>
+
+
+
+
+      <div class="col-md-12 img-box-7"  id="About" style="min-height: 50vh ;">
+        <div class="text-content p-4 " style="min-height: 50vh ;">
+          <h3>About us</h3>
+          <p class="about-contain" ><i class="fa-solid fa-quote-left"></i> Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia asperiores corporis quaerat necessitatibus placeat commodi dignissimos! Minima in totam odit harum, cupiditate rerum, deleniti possimus placeat, excepturi a sit nesciunt.
+          Illo quisquam, itaque illum ipsa, dolores autem inventore tempore facilis cumque sit sequi aliquid saepe! Rerum rem sed, et doloribus assumenda quas similique! Perspiciatis eaque vel quaerat ab numquam? Totam?
+          Esse repellat ullam molestias voluptatum a voluptas eius ipsum distinctio. Tempore cumque accusantium porro? Nobis necessitatibus laborum velit. Fuga error expedita incidunt ducimus quidem facere ex totam odio sed doloribus!
+          Nemo aliquam, a accusantium impedit in iure. Facere non ducimus, hic provident aut, consequatur laborum unde architecto natus itaque suscipit et? Tenetur dolorum eius reiciendis eligendi in repudiandae aliquam magnam.
+          Non veniam impedit facere illum nisi architecto recusandae minus esse, assumenda aperiam! Voluptate perferendis fugit dicta optio accusantium incidunt ipsa numquam. Sunt necessitatibus unde deserunt ipsam veniam accusantium dignissimos assumenda? <i class="fa-solid fa-quote-right"></i></p>
+          <button class="btn1">explore now</button>
+        </div>
+      </div>
+
+
+      <div class="col-md-12 p-5" id="Category">
+        <div class="row d-flex align-items-center justify-content-evenly gap-2 ">
+  
+          <div class="col-md-12 mb-5">
+            <h3 class="title">Latest Products</h3>
+          </div>
+       
+
+          <div class="shadow  card box-img p-3" style="width: 18rem;"  *ngFor="let item of ProctDetails ">
+            <img [src]="item.ProductImage" class="card-img-top" alt="Tomato">
+            <div class="text-con">
+              <h5 class="text-center">{{item.ProductName}}</h5>
+              <div class="text-con d-flex align-items-center justify-content-between">
+                <h6 class="text-muted text-center"  style="width: 8rem;">{{item.QuantityDescription}}</h6>
+                <h5 class=""> ₹ {{item.Rate}}</h5>
+              </div>
+               <div class="cart-box d-flex align-items-center justify-content-center mb-2">
+                <div class="input-box input-group" style="width: 8rem;">
+                  <button class="btn btn-dark btn-3 btn-sm" (click)="minus(item)"><i class="fa-solid fa-minus"></i></button>
+                  <input type="text" [(ngModel)]="item.CartQuantity" class="form-control form-control-sm text-center border-0" readonly>
+                  <button class="btn btn-dark btn-3 btn-sm" (click)="add(item)"><i class="fa-solid fa-plus"></i></button>
+                </div>
+               </div>
+                <div class="btn-box d-flex align-items-center justify-content-between mb-2">
+                  <button class="btn-2 mx-1" (click)="AddCart(item)">ADD TO CART</button>
+                  <button class="btn-4" (click)="BuyNow(item)">BUY NOW</button>
+    
+                </div>
+            </div>
+    
+          </div>
+
+
+
+        </div>
+      </div>
+
+
+
+      <div class="col-md-12 img-box-5" id="contact">
+        <div class="text-content p-4 " style="width: 27rem;">
+          <h3 class="mb-3">Contact Us</h3>
+          <div class="mb-3">
+            <input type="email" class="form-control contact-input" placeholder="Name">
+          </div>
+          <div class="mb-3">
+            <input type="email" class="form-control contact-input" placeholder="Email">
+          </div>
+          <div class="mb-3">
+            <textarea class="form-control contact-input"  rows="3" placeholder="Message"></textarea>
+          </div>
+          <button class="btn1">Submit</button>
+        </div>
+      </div>
+  
+    </div>
+  </div>
