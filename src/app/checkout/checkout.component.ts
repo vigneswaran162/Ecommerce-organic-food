@@ -3,6 +3,7 @@ import { ProductsService } from '../../services/products.service';
 import { NgIf, CommonModule } from '@angular/common';  // ✅ Import CommonModule
 import { AddproductModel, AddressInfoModel, PaymentModeModel } from '../../model/addprodctmodel';
 import { FormsModule, NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class CheckoutComponent {
   paymodel:PaymentModeModel
   
 
-  constructor (private service:ProductsService){}
+  constructor (private service:ProductsService ,private router:Router){}
 
    async ngOnInit() {
     this.isLoading = true
@@ -162,5 +163,8 @@ if(event.target.value != ""){
 }
 }
 
+homepage(){
+  this.router.navigate([''])
+}
 
 }
