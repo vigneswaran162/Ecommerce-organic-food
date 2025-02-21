@@ -194,12 +194,143 @@ textarea:hover{
   border: 1px solid grey !important;
 
 }
+.accordion-button:hover{
+  box-shadow: none !important;
+  border:none !important;
+}
+.accordion-button:focus{
+  box-shadow: none !important;
+  border:none !important;
+}
+
+.stepper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.steps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.step-number {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 50%;
+  background-color: lightgray;
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  z-index: 1;
+}
+
+.step-label {
+  margin-left: 10px;
+}
+
+.step-line {
+  width: 50px;
+  height: 4px;
+  background-color: lightgray;
+  position: absolute;
+  left: 40px;
+  top: 18px;
+}
+
+.step.active .step-number {
+  background-color: #4cd137;
+  color: white;
+}
+
+.step.completed .step-number {
+  background-color: black;
+  color: white;
+}
+
+.step.completed .step-line {
+  background-color: black;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+.btn45 {
+  padding: 10px;
+  margin: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  border-radius: 20px;
+}
+
+.btn45:disabled {
+  background-color: lightgray;
+  cursor: not-allowed;
+}
+.btn45:not(:disabled) {
+  background-color: #4cd137;
+  color: white;
+}
 
 
 
+.cursor{
+  position: relative;
+  width: 24em;
+  margin: 0 auto;
+  border-right: 2px solid rgba(255,255,255,.75);
+  font-size: 30px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  transform: translateY(-50%);    
+}
+/* Animation */
+.typewriter-animation {
+animation: 
+  typewriter 5s steps(50) 1s 1 normal both, 
+  blinkingCursor 500ms steps(50) infinite normal;
+}
+@keyframes typewriter {
+from { width: 0; }
+to { width: 100%; }
+}
+@keyframes blinkingCursor{
+from { border-right-color: rgba(255,255,255,.75); }
+to { border-right-color: transparent; }
+}
 
 
-.fa-circle-xmark{
+.info-Title{
+  color: #000 !important;
+  font-size: 18px !important;
+  letter-spacing: 1px !important;
+  margin-bottom: 20x !important;
+}
+.info-Title span{
+  color:#4cd137 !important;
+  font-size: 18px !important;
+  letter-spacing: 1px !important;
+  margin-bottom: 20x !important;
+}
+
+.fa-xmark{
   font-size: 25px !important;
-  cursor: pointer !important;
+  color: gray !important;
+  cursor: pointer;
+  padding: 0px 10px !important;
 }
