@@ -92,20 +92,106 @@
            </div>
         </div>
         
-        <div *ngIf="currentStep === 0">
-          <h6  class="info-Title">Adrees <span>info</span></h6>
-            <input class="form-control form-control-sm mb-3" required type="text" placeholder="Name *" aria-label=".form-control-sm example">
-            <input class="form-control form-control-sm mb-3" required type="text" placeholder="Phone No *"   aria-label=".form-control-sm example">
-            <input class="form-control form-control-sm mb-3" type="text" placeholder="Alternative Phone No" aria-label=".form-control-sm example">
-            <textarea class="form-control mb-3"placeholder="Address *" required rows="3"></textarea>
-            <input class="form-control form-control-sm mb-3" type="text" placeholder="Land Mark" aria-label=".form-control-sm example">
+        <form #addressForm="ngForm">
+          <div *ngIf="currentStep === 0">
+            <h6 class="info-Title">Address <span>Info</span></h6>
+        
+            <input class="form-control form-control-sm mb-3"
+                   required 
+                   type="text" 
+                   placeholder="Name *" 
+                   [(ngModel)]="model.Name"
+                   name="Name"
+                   #nameRef="ngModel">
+            <div *ngIf="nameRef.invalid && nameRef.touched" class="text-danger text-sm-start">Name is required.</div>
+        
+            <input class="form-control form-control-sm mb-3"
+                   required 
+                   type="text" 
+                   placeholder="Phone No *"
+                   [(ngModel)]="model.PhoneNo"
+                   pattern="[0-9]*"
+                   minlength="10"
+                   maxlength="10"
+                   name="PhoneNo"
+                   (blur)="OnBlurphoneNumber($event)"
+                   #phoneRef="ngModel">
+            <div *ngIf="phoneRef.invalid && phoneRef.touched" class="text-danger text-sm-start">Phone number is required.</div>
+        
+            <input class="form-control form-control-sm mb-3"
+                   type="text" 
+                   placeholder="Alternative Phone No"
+                   [(ngModel)]="model.APhoneNo"
+                   (blur)="OnBlurAlterphoneNumber($event)"
+                   pattern="[0-9]*"
+                   minlength="10"
+                   maxlength="10"
+                   name="APhoneNo">
+        
+            <textarea class="form-control mb-3"
+                      placeholder="Address *"
+                      [(ngModel)]="model.Address"
+                      name="Address"
+                      required
+                      rows="3"
+                      #addressRef="ngModel">
+            </textarea>
+            <div *ngIf="addressRef.invalid && addressRef.touched" class="text-danger text-sm-start">Address is required.</div>
+        
+            <input class="form-control form-control-sm mb-3"
+                   type="text" 
+                   placeholder="Land Mark"
+                   [(ngModel)]="model.LandMark"
+                   name="LandMark">
+        
             <div class="box d-flex align-items-center justify-content-between flex-wrap">
-              <input class="form-control form-control-sm mb-3" required type="text" placeholder="City *" aria-label=".form-control-sm example" style="width: 48%;">
-              <input class="form-control form-control-sm mb-3" required type="text mx-1" placeholder="Pincode *" aria-label=".form-control-sm example" style="width: 48%;">
-              <input class="form-control form-control-sm mb-3" required type="text" placeholder="State *" aria-label=".form-control-sm example" style="width: 48%;">
-              <input class="form-control form-control-sm mb-3" required type="text" placeholder="Country *" aria-label=".form-control-sm example" style="width: 48%;">
-            </div>       
-      </div>
+              <input class="form-control form-control-sm mb-3"
+                     required 
+                     type="text" 
+                     placeholder="City *"
+                     [(ngModel)]="model.City"
+                     name="City"
+                     #cityRef="ngModel"
+                     style="width: 48%;">
+              <div *ngIf="cityRef.invalid && cityRef.touched" class="text-danger text-sm-start">City is required.</div>
+        
+              <input class="form-control form-control-sm mb-3"
+                     required 
+                     type="text" 
+                     pattern="[0-9]*"
+                     placeholder="Pincode *"
+                     [(ngModel)]="model.PinCode"
+                     (blur)="OnBlurPinCode($event)"
+                     name="PinCode"
+                     minlength="6"
+                     maxlength="6"
+                     #pincodeRef="ngModel"
+                     style="width: 48%;">
+              <div *ngIf="pincodeRef.invalid && pincodeRef.touched" class="text-danger text-sm-start">Pincode is required.</div>
+        
+              <input class="form-control form-control-sm mb-3"
+                     required 
+                     type="text" 
+                     placeholder="State *"
+                     [(ngModel)]="model.State"
+                     name="State"
+                     #stateRef="ngModel"
+                     style="width: 48%;">
+              <div *ngIf="stateRef.invalid && stateRef.touched" class="text-danger text-sm-start">State is required.</div>
+        
+              <input class="form-control form-control-sm mb-3"
+                     required 
+                     type="text" 
+                     placeholder="Country *"
+                     [(ngModel)]="model.Country"
+                     name="Country"
+                     #countryRef="ngModel"
+                     style="width: 48%;">
+              <div *ngIf="countryRef.invalid && countryRef.touched" class="text-danger text-sm-start">Country is required.</div>
+            </div> 
+          </div>
+        </form>
+        
 
           <div>
            <div *ngIf="currentStep === 1">
@@ -114,13 +200,54 @@
             <div class="accordion" id="accordionExample">
               <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                     CREDIT / DEBIT CARD
                   </button>
                 </h2>
                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                   <div class="accordion-body">
-                    <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                    <div class="payment-container">
+                      <div class="mb-3">
+                          <input type="text"  (blur)="OnBlurNumber($event)"   [(ngModel)]="paymodel.CardNumber"  pattern="[0-9]*"  class="form-control form-control-sm" placeholder="Card Number" minlength="16" maxlength="16">
+                      </div>
+                      <div class="d-flex gap-2">
+                          <select class="form-select form-select-sm">
+                              <option selected>Month</option>
+                              <option>01</option>
+                              <option>02</option>
+                              <option>03</option>
+                              <option>04</option>
+                              <option>05</option>
+                              <option>06</option>
+                              <option>07</option>
+                              <option>08</option>
+                              <option>09</option>
+                              <option>10</option>
+                              <option>11</option>
+                              <option>12</option>
+                          </select>
+                  
+                          <select class="form-select form-select-sm">
+                              <option selected>Year</option>
+                              <option>2025</option>
+                              <option>2026</option>
+                              <option>2027</option>
+                              <option>2028</option>
+                              <option>2029</option>
+                          </select>
+                      </div>
+                  
+                      <div class="mt-2 d-flex align-items-center justify-content-between ">
+                        <div style="width: 40%;">
+                          <input type="text" pattern="[0-9]*" [(ngModel)]="paymodel.CCV"  (blur)="OnBlurCCV($event)" class="form-control form-control-sm" placeholder="CVV" minlength="3" maxlength="3">
+                        </div>
+                        <div  style="width: 40%;">
+                          <small class="text-muted" style="font-size: 8px !important;line-height: 5px !important;">3 or 4 digits usually found on the signature strip</small>
+                        </div>
+                      </div>
+                  
+                      <button class="btn btn-proceed mt-3" (click)="nextpay()" style="width: 100%;background-color: #4cd137; border-radius: 40px !important;font-size: 13px ;color:#fff;">pay {{totalPrice}}</button>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -144,7 +271,7 @@
                 </h2>
                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                   <div class="accordion-body">
-                    <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                    <button class="btn btn-proceed mt-3" (click)="nextpay()" style="width: 100%;background-color: #4cd137; border-radius: 40px !important;font-size: 13px ;color:#fff;">place order {{totalPrice}}</button>
                   </div>
                 </div>
               </div>
@@ -152,16 +279,23 @@
            </div>
 
            <div *ngIf="currentStep === 2">
-            <h6 class="info-Title">Confrimation</h6>
-            <p class="cursor typewriter-animation">Hi there, I'm a Typewriter Animation made in pure CSS!</p>
-           </div>
+            <div class="my-2">
+              <h6 class="cursor typewriter-animation" style="color: #000;">Your Order Has Been Successfully Placed!</h6>
+            </div>
+          </div>
           </div>
 
 
     </div>
-    <div class="modal-footer" >
-        <button (click)="prevStep()" class="btn45" [disabled]="currentStep === 0">Previous</button>
-        <button (click)="nextStep()" class="btn45" [hidden]="currentStep === 1" [disabled]="currentStep === steps.length - 1">Next</button>
+    <div class="modal-footer" [hidden]="currentStep === 3">
+
+      <button (click)="prevStep()" class="btn45" [disabled]="currentStep === 0">Previous</button>
+      <button (click)="nextStep(addressForm)" [hidden]="currentStep === 1"
+              class="btn45" 
+              [disabled]="!addressForm.valid">
+        Next
+      </button>
+       
     </div>
   </div>
 </div>

@@ -1,11 +1,13 @@
 import { Component, signal } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { NgIf, CommonModule } from '@angular/common';  // ✅ Import CommonModule
+import { AddproductModel, AddressInfoModel, PaymentModeModel } from '../../model/addprodctmodel';
+import { FormsModule, NgForm } from '@angular/forms';
 
 
 @Component({
   selector: 'app-checkout',
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css'
 })
@@ -17,12 +19,16 @@ export class CheckoutComponent {
   isLoading: boolean;
   productslength: number;
   totalPrice: any;
-
+  model:AddressInfoModel;
+  paymodel:PaymentModeModel
+  
 
   constructor (private service:ProductsService){}
 
    async ngOnInit() {
     this.isLoading = true
+    this.model = new AddressInfoModel();
+    this.paymodel = new PaymentModeModel();
     this.productslength = this.service.getProductslength();
     await this.GetProducts();
     this.CartDetails();
@@ -93,17 +99,68 @@ export class CheckoutComponent {
   steps = ['Address', 'Payment', 'Confirm'];
   currentStep = 0;
 
-  nextStep() {
-    if (this.currentStep < this.steps.length - 1) {
+  nextStep(addressForm: NgForm) {
+    if (addressForm.valid) {
       this.currentStep++;
     }
   }
-
   prevStep() {
     if (this.currentStep > 0) {
       this.currentStep--;
     }
   }
+
+
+  nextpay() {
+      this.currentStep++;
+    
+  }
+
+  OnBlurCCV(event:any){
+    if(event.target.value != ""){
+      if (!event.target.validity.valid) { 
+        this.paymodel.CCV = '';
+      }
+    }
+}
+OnBlurNumber(event:any){
+  if(event.target.value != ""){
+    if (!event.target.validity.valid) { 
+      this.paymodel.CardNumber = '';
+    }
+  }
+}
+
+
+OnBlurAlterphoneNumber(event:any){
+  if(event.target.value != ""){
+    if (!event.target.validity.valid) { 
+      this.model.APhoneNo = '';
+    }
+  }
+}
+OnBlurphoneNumber(event:any){
+if(event.target.value != ""){
+  if (!event.target.validity.valid) { 
+    this.model.PhoneNo = '';
+  }
+}
+}
+
+OnBlurName(event:any){
+  if(event.target.value != ""){
+    if (!event.target.validity.valid) { 
+      this.model.Name = '';
+    }
+  }
+}
+OnBlurPinCode(event:any){
+if(event.target.value != ""){
+  if (!event.target.validity.valid) { 
+    this.model.PinCode = '';
+  }
+}
+}
 
 
 }
