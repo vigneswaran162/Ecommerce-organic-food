@@ -1,5 +1,5 @@
 .cart-box{
-    height: 75vh !important;
+   max-height: 75vh !important;
 }
 
 .checkout{
@@ -97,7 +97,7 @@ tr td{
 
   .checkout-contain{
     width: 100% !important;
-    height: 100vh !important;
+    max-height: 100vh !important;
   }
 
   @media only screen  and (max-width: 568px) {
@@ -113,10 +113,6 @@ tr td{
       font-size: 8px !important;
 
   }
-.cart-box{
-  width: 100% !important;
-  height: auto !important;
-}
 h5{
   font-size: 12px !important;
 }
@@ -143,10 +139,6 @@ p{
   text-align: justify;
   font-size: 6px !important;
   line-height: 4px !important;
-}
-.checkout-contain{
-  width:0% !important;
-  height:0vh !important;
 }
 
 
