@@ -97,7 +97,7 @@ tr td{
 
   .checkout-contain{
     width: 100% !important;
-    max-height: 100vh !important;
+    min-height: 100vh !important;
   }
 
   @media only screen  and (max-width: 568px) {
@@ -143,6 +143,15 @@ p{
 
 .alert{
   font-size: 8px !important;
+}
+
+.checkout-contain{
+  width: 100% !important;
+  min-height: 0 !important;
+}
+.cart-box{
+  width: 100% !important;
+  height: 100% !important;
 }
 
   }
