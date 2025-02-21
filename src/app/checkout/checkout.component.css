@@ -141,7 +141,9 @@ p{
   line-height: 4px !important;
 }
 
-
+.alert{
+  font-size: 8px !important;
+}
 
   }
 
