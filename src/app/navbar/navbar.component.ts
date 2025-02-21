@@ -72,13 +72,17 @@ export class NavbarComponent implements OnInit{
   }
 
   async onClickModel(){
-    this.isLoading =true
     this.isModalOpen = !this.isModalOpen
+    this.productslength = this.service.getProductslength();
+
+    if(this.isModalOpen && this.productslength != 0){
+    this.isLoading =true
     await this.GetProducts()
     this.productslength = this.service.getProductslength();
     this.AddCartDetails = this.service.GetCartDetails();
     this.CartDetails()
     this.isLoading =false
+    }
 
   }
 

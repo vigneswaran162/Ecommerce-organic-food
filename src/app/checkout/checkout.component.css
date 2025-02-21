@@ -83,7 +83,7 @@ tr td{
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 999 !important;
+    z-index: 4 !important;
   }
   
 .loadimg{
@@ -95,6 +95,10 @@ tr td{
     color: #fff !important;
   }
 
+  .checkout-contain{
+    width: 100% !important;
+    height: 100vh !important;
+  }
 
   @media only screen  and (max-width: 568px) {
     
@@ -110,8 +114,8 @@ tr td{
 
   }
 .cart-box{
-    height: auto !important;
-    /* min-height: 30vh !important; */
+  width: 100% !important;
+  height: auto !important;
 }
 h5{
   font-size: 12px !important;
@@ -135,23 +139,16 @@ button {
 input,textarea{
   font-size: 10px !important;
 }
-mat-step {
-  font-size: 10px !important;
-
-}
-mat-panel-title{
-  font-size: 8px !important;
-  font-weight: 600 !important;
-}
 p{
   text-align: justify;
   font-size: 6px !important;
   line-height: 4px !important;
 }
-
-::ng-deep .mat-step-label {
-  font-size: 6px !important; 
+.checkout-contain{
+  width:0% !important;
+  height:0vh !important;
 }
+
 
 
   }
