@@ -177,13 +177,29 @@ h4{
 
 input:focus{
   box-shadow: none !important;
-  border: none !important;
-
+  border: 1px solid grey !important;
 }
 input:hover{
   box-shadow: none !important;
-  border: none !important;
+  border: 1px solid grey !important;
+
+}
+
+textarea:focus{
+  box-shadow: none !important;
+  border: 1px solid grey !important;
+}
+textarea:hover{
+  box-shadow: none !important;
+  border: 1px solid grey !important;
 
 }
 
 
+
+
+
+.fa-circle-xmark{
+  font-size: 25px !important;
+  cursor: pointer !important;
+}
