@@ -345,3 +345,24 @@ footer  li{
     }
   }
 
+
+
+
+  .swiper-slide {
+    width: 300px !important; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: white;
+
+  }
+  
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: rgb(27, 27, 27); 
+  }
+  
+  .swiper-pagination{
+    color: rgb(27, 27, 27) !important; 
+  }

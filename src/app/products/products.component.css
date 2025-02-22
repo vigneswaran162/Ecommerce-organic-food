@@ -148,7 +148,7 @@ footer  li{
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 5 !important;
+    z-index: 999 !important;
   }
   
 .loadimg{

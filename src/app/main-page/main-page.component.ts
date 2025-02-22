@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ProductsService } from '../../services/products.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule, NgIf } from '@angular/common';
+declare var Swiper: any;
 
 @Component({
   selector: 'app-main-page',
@@ -32,9 +33,31 @@ export class MainPageComponent implements OnInit {
     await this.GetProducts()
     this.CartDetails()
     this.productslength = this.service.getProductslength();
+
+    setTimeout(() => {
+      new Swiper('.mySwiper', {
+        slidesPerView: 'auto', // Adjust width dynamically
+        spaceBetween: 20, // Space between slides
+        loop: true,
+        centeredSlides: true, // Center slides
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      });
+    }, 100);
+
     this.isLoading = false
 
   }
+
+
+
+
 
 
 

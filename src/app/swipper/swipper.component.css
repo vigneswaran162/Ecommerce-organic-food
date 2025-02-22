@@ -1,0 +1,28 @@
+.swiper {
+    width: 100%;
+    height: 300px; /* Adjust height as needed */
+  }
+  
+  .swiper-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  
+  .swiper-slide {
+    width: 300px !important; /* Fixed width */
+    height: 250px; /* Adjust height as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    background: #007aff;
+    color: white;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Card effect */
+  }
+  
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: white; /* Ensure buttons are visible */
+  }
+  

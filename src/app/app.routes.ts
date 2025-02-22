@@ -3,6 +3,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { AddproductsComponent } from './addproducts/addproducts.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductsComponent } from './products/products.component';
+import { SwipperComponent } from './swipper/swipper.component';
 
 export const routes: Routes = [
    {
@@ -18,5 +19,8 @@ export const routes: Routes = [
    },{
       path:'Products/:type',
       component:ProductsComponent
+   },{
+      path:'Swipper',
+      component:SwipperComponent
    }
 ];

@@ -55,8 +55,50 @@
             <h3 class="title">Latest Products</h3>
           </div>
        
+          <div class="col-md-12">
+            <div class="swiper mySwiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide" *ngFor="let item of ProctDetails">
+                  <div class="shadow card box-img p-3" style="width: 18rem;">
+                    <img [src]="item.ProductImage" class="card-img-top P-3" alt="Tomato">
+                    <div class="text-con">
+                      <h5 class="text-center">{{ item.ProductName }}</h5>
+                      <div class="text-con d-flex align-items-center justify-content-between">
+                        <h6 class="text-muted text-center" style="width: 10rem;">{{ item.QuantityDescription }}</h6>
+                        <h5 style="width: 8rem;">₹ {{ item.Rate }}</h5>
+                      </div>
+                      <div class="cart-box d-flex align-items-center justify-content-center mb-2">
+                        <div class="input-box input-group" style="width: 8rem;">
+                          <button class="btn btn-dark btn-3 btn-sm" (click)="minus(item)">
+                            <i class="fa-solid fa-minus"></i>
+                          </button>
+                          <input type="text" [(ngModel)]="item.CartQuantity" class="form-control form-control-sm text-center border-0" readonly>
+                          <button class="btn btn-dark btn-3 btn-sm" (click)="add(item)">
+                            <i class="fa-solid fa-plus"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="btn-box d-flex align-items-center justify-content-between mb-2">
+                        <button class="btn-2 mx-1" (click)="AddCart(item)">ADD TO CART</button>
+                        <button class="btn-4" (click)="BuyNow(item)">BUY NOW</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Pagination -->
+              <div class="swiper-pagination"></div>
+              <!-- Navigation -->
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+            </div>
 
-          <div class="shadow  card box-img p-3" style="width: 18rem;"  *ngFor="let item of ProctDetails ">
+          </div>
+
+
+
+          <!-- <div class="shadow  card box-img p-3" style="width: 18rem;"  *ngFor="let item of ProctDetails ">
             <img [src]="item.ProductImage" class="card-img-top P-3" alt="Tomato">
             <div class="text-con">
               <h5 class="text-center">{{item.ProductName}}</h5>
@@ -78,7 +120,7 @@
                 </div>
             </div>
     
-          </div>
+          </div> -->
 
 
 
