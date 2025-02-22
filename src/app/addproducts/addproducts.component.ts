@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { AddproductModel } from '../../model/addprodctmodel';
 import { FormsModule } from '@angular/forms'
-
+declare var Swiper: any;
 @Component({
   selector: 'app-addproducts',
   imports: [FormsModule],
@@ -14,8 +14,22 @@ export class AddproductsComponent {
   model:AddproductModel;
   isUpdate=false
   constructor (private service:ProductsService){}
-  ngOnInit(): void {
-    this.model = new AddproductModel();
+  ngAfterViewInit() {
+    setTimeout(() => {
+      new Swiper('.mySwiper', {
+        slidesPerView: 1,
+        spaceBetween: 10,
+        loop: true, // Enable looping
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      });
+    }, 100); // Delay to ensure DOM is ready
   }
 
 
