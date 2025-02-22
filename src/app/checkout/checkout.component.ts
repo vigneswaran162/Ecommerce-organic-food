@@ -234,6 +234,9 @@ async GetorderID(){
   }
 }  
 
+SelectPaymentMode(Type:any){
+ this.model.PaymentMode =Type;
+}
 
 
 }
