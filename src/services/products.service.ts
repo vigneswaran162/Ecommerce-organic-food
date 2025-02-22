@@ -80,4 +80,20 @@ async CRUD(entity:any): Promise<any> {
   let res = await this.http.post(this.APIUrl, entity, options).toPromise()
   return res;
   }
+
+
+
+  async orderInsert(entity:any): Promise<any> {
+      // this.APIUrl = this.apiurl+'Addproducts';
+      this.APIUrl = this.localurl+'OrdersInsert';
+    let headers = new HttpHeaders({
+      'content-Type': 'application/json',
+      Accept: 'application/json',
+    });
+    let options = {
+      headers: headers,
+    };
+    let res = await this.http.post(this.APIUrl, entity, options).toPromise()
+    return res;
+    }
 }

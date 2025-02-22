@@ -113,8 +113,9 @@ export class CheckoutComponent {
   }
 
 
-  nextpay() {
-      this.currentStep++;
+  async nextpay() {
+    await this.orderinsert()
+
     
   }
 
@@ -166,9 +167,45 @@ if(event.target.value != ""){
 homepage(){
   this.router.navigate([''])
 }
-nextpaycard() {
+async nextpaycard() {
   if (this.paymodel.CardNumber && this.paymodel.Month && this.paymodel.Year && this.paymodel.CCV) {
-    this.currentStep++;
+    await this.orderinsert()
   } 
 }
+
+
+
+preparemodel(){
+  const mod = []
+  for (let i = 0; i < this.CartDetailsDet.length; i++) {
+    let obj ={
+      orderId:'ORD-001',
+      customerName:this.model.Name,
+      ProductName: this.CartDetailsDet[i].ProductName,
+      Category: this.CartDetailsDet[i].ProductName,
+      Rate: this.CartDetailsDet[i].Rate,
+      price:  this.CartDetailsDet[i].Price,
+      CartQuantity: this.CartDetailsDet[i].CartQuantity,
+    }
+    mod.push(obj)
+  }
+  return mod
+}
+
+
+async orderinsert(){
+  const editmod = this.preparemodel()
+  let response:any = await this.service.orderInsert(editmod).catch((err) => {
+    alert(err.message)
+  });
+ if(response != undefined){
+  if (response.Boolval == true) { 
+    localStorage.removeItem('cart');    
+    this.currentStep++;
+  } else {
+    alert(response.returnerror);
+  }
+}
+}
+
 }
