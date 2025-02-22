@@ -21,6 +21,7 @@ export class AddproductModel{
 
 
 export class AddressInfoModel{
+    orderId:string;
     Name: string;
     PhoneNo: string;
     APhoneNo: string;
@@ -36,6 +37,7 @@ export class AddressInfoModel{
     Void:string;
     OpsType:string;
     CartQuantity:string;
+    CartDet:any;
 }
 
 

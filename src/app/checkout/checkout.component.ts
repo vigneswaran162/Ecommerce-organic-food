@@ -21,7 +21,8 @@ export class CheckoutComponent {
   productslength: number;
   totalPrice: any;
   model:AddressInfoModel;
-  paymodel:PaymentModeModel
+  paymodel:PaymentModeModel;
+  orderidCount:any
   months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
   years = ['2025', '2026', '2027', '2028', '2029'];
 
@@ -103,6 +104,7 @@ export class CheckoutComponent {
 
   nextStep(addressForm: NgForm) {
     if (addressForm.valid) {
+      this.GetorderID()
       this.currentStep++;
     }
   }
@@ -176,10 +178,22 @@ async nextpaycard() {
 
 
 preparemodel(){
-  const mod = []
+  const mod = new AddressInfoModel();
+  mod.orderId = this.model.orderId;
+  mod.Name = this.model.Name;
+  mod.PhoneNo = this.model.PhoneNo;
+  mod.APhoneNo= this.model.APhoneNo;
+  mod.Address = this.model.Address
+  mod.City = this.model.City
+  mod.PinCode = this.model.PinCode
+  mod.State = this.model.State
+  mod.Country = this.model.Country
+  mod.LandMark = this.model.LandMark
+  mod.PaymentMode = this.model.PaymentMode
+  mod.CartDet =[]
   for (let i = 0; i < this.CartDetailsDet.length; i++) {
     let obj ={
-      orderId:'ORD-001',
+      orderId:this.model.orderId,
       customerName:this.model.Name,
       ProductName: this.CartDetailsDet[i].ProductName,
       Category: this.CartDetailsDet[i].ProductName,
@@ -187,7 +201,7 @@ preparemodel(){
       price:  this.CartDetailsDet[i].Price,
       CartQuantity: this.CartDetailsDet[i].CartQuantity,
     }
-    mod.push(obj)
+    mod.CartDet.push(obj)
   }
   return mod
 }
@@ -207,5 +221,19 @@ async orderinsert(){
   }
 }
 }
+
+
+async GetorderID(){
+  this.isLoading = false
+  let response:any = await this.service.GetOrderID().catch(err=>{
+      alert(err.message)
+      this.isLoading = true
+  })
+  if(response != undefined){
+    this.model.orderId  = response.orderid
+  }
+}  
+
+
 
 }

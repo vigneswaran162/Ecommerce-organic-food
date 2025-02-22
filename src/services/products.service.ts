@@ -57,7 +57,14 @@ export class ProductsService {
     let res = await this.http.get(this.APIUrl).toPromise()
     return res
   }
-  
+
+
+  async GetOrderID() {
+    this.APIUrl = this.localurl+'GetOrderID';
+    let res = await this.http.get(this.APIUrl).toPromise()
+    return res
+  }
+
 async CRUD(entity:any): Promise<any> {
   if (entity.OpsType == "S") {
     // this.APIUrl = this.apiurl+'Addproducts';
