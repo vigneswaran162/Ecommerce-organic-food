@@ -343,6 +343,12 @@ footer  li{
         color: #fff !important;
         font-size: 12px !important;
     }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      visibility: hidden;
+    }
+    
   }
 
 
