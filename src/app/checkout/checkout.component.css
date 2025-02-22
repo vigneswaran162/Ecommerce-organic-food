@@ -336,3 +336,7 @@ to { border-right-color: transparent; }
   cursor: pointer;
   padding: 0px 10px !important;
 }
+
+.order-summary th ,td{
+  font-size: 10px !important;
+}
