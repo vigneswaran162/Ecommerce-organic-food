@@ -60,7 +60,7 @@ export class ProductsService {
 
 
   async GetOrderID() {
-    this.APIUrl = this.localurl+'GetOrderID';
+    this.APIUrl = this.apiurl+'GetOrderID';
     let res = await this.http.get(this.APIUrl).toPromise()
     return res
   }
@@ -68,7 +68,7 @@ export class ProductsService {
 async CRUD(entity:any): Promise<any> {
   if (entity.OpsType == "S") {
     // this.APIUrl = this.apiurl+'Addproducts';
-    this.APIUrl = this.localurl+'Addproducts';
+    this.APIUrl = this.apiurl+'Addproducts';
 
   }
   else if (entity.OpsType == "U") {
@@ -92,7 +92,7 @@ async CRUD(entity:any): Promise<any> {
 
   async orderInsert(entity:any): Promise<any> {
       // this.APIUrl = this.apiurl+'Addproducts';
-      this.APIUrl = this.localurl+'OrdersInsert';
+      this.APIUrl = this.apiurl+'OrdersInsert';
     let headers = new HttpHeaders({
       'content-Type': 'application/json',
       Accept: 'application/json',
