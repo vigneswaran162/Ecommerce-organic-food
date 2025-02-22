@@ -1,0 +1,89 @@
+<app-navbar></app-navbar>
+
+
+
+<div class="container mb-3" style="margin-top: 100px !important;min-height: 80vh;">
+    <div class="row  d-flex align-items-center justify-content-center flex-wrap gap-4 row-contain">
+     
+      <div class="col-md-12 d-flex align-items-center justify-content-between ">
+        <div class="p-2 mb-3" style="width: 14rem;">
+          <input class="form-control form-control-sm search"   [(ngModel)]="searchText" type="text" placeholder="search...."  aria-label=".form-control-sm example">
+      </div>
+
+      <div class=" p-2 mb-3" style="width: 14rem;">
+        <select class="form-select search"  [(ngModel)]="Category" (change)="SelecCategory()">
+            <option  value="vegetables">Vegetables</option>
+            <option  value="fruits">fruits</option>
+            <option  value="Spices">Spices</option>
+        </select>
+    </div>
+      </div>
+        
+
+      <div class="shadow  card box-img p-3" style="width: 18rem;"  *ngFor="let item of getFilteredProducts() ">
+        <img [src]="item.ProductImage" class="card-img-top" alt="Tomato">
+        <div class="text-content">
+          <h5 class="text-center">{{item.ProductName}}</h5>
+          <div class="text-content d-flex align-items-center justify-content-between">
+            <h6 class="text-muted text-center">{{item.QuantityDescription}}</h6>
+            <h5 class="mx-3"> ₹ {{item.Rate}}</h5>
+          </div>
+           <div class="cart-box d-flex align-items-center justify-content-center mb-2">
+            <div class="input-box input-group" style="width: 8rem;">
+              <button class="btn btn-dark btn-3 btn-sm" (click)="minus(item)"><i class="fa-solid fa-minus"></i></button>
+              <input type="text" [(ngModel)]="item.CartQuantity" class="form-control form-control-sm text-center border-0" [minlength]="1" [maxlength]="2" readonly>
+              <button class="btn btn-dark btn-3 btn-sm" (click)="add(item)"><i class="fa-solid fa-plus"></i></button>
+            </div>
+           </div>
+            <div class="btn-box d-flex align-items-center justify-content-between mb-2">
+              <button class="btn-2 mx-1" (click)="AddCart(item)">ADD TO CART</button>
+              <button class="btn-4" (click)="BuyNow(item)">BUY NOW</button>
+
+            </div>
+        </div>
+
+      </div>
+    </div>
+</div>
+
+<footer>
+  <div class="container-fluid bg-dark px-5 ">
+      <div class="row">
+          <div class="col-md-4  mt-5">
+            <h5 class="mb-2"><i class="fa-solid fa-leaf"></i> ORGANIC</h5>
+            <span>437,Valluvar Nagar 3rd ,</span> <br>
+            <span>Annathana patti,</span> <br>
+            <span>Salem-636002</span>
+
+          </div>
+          <div class="col-md-4 mt-5">
+              <h5 class="mb-2">Quick Links</h5>
+              <li>
+                  <a href="#home">Hoem</a>
+              </li>
+              <li>
+                  <a href="#Category">Category</a>
+              </li>
+              <li>
+                  <a href="#About">About us</a>
+              </li>
+              
+          </div>
+          <div class="col-md-4 mt-5">
+              <h5 class="mb-2">Contact Us</h5>
+              <span class="mb-3"><i class="fa-solid fa-envelope me-2"></i>  vigneswaran162gmail.com</span><br>
+              <span class="mb-3"><i class="fa-solid fa-phone me-2"></i>  9629108882</span> <br>
+              <span class="mb-3"><i class="fa-brands fa-instagram"></i> <i class="fa-brands fa-facebook mx-2"></i> <i class="fa-brands fa-linkedin"></i></span>
+          </div>
+          <div class="col-md-12 text-center mt-5 mb-2 text-capitalize">
+            <p>all rights reversed by vigneswaran</p>
+          </div>
+      </div>
+  </div>
+</footer>
+
+
+
+<div class="loading-overlay" *ngIf="isLoading">
+  <div class="loading-spinner"> <img src="/assets/healthy-food.gif"  class="img-fluid loadimg"></div>
+</div>
