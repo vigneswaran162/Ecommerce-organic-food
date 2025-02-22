@@ -22,7 +22,8 @@ export class CheckoutComponent {
   totalPrice: any;
   model:AddressInfoModel;
   paymodel:PaymentModeModel
-  
+  months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+  years = ['2025', '2026', '2027', '2028', '2029'];
 
   constructor (private service:ProductsService ,private router:Router){}
 
@@ -147,7 +148,6 @@ if(event.target.value != ""){
   }
 }
 }
-
 OnBlurName(event:any){
   if(event.target.value != ""){
     if (!event.target.validity.valid) { 
@@ -166,5 +166,9 @@ if(event.target.value != ""){
 homepage(){
   this.router.navigate([''])
 }
-
+nextpaycard() {
+  if (this.paymodel.CardNumber && this.paymodel.Month && this.paymodel.Year && this.paymodel.CCV) {
+    this.currentStep++;
+  } 
+}
 }

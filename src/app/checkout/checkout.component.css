@@ -153,7 +153,9 @@ p{
   width: 100% !important;
   min-height: 40vh !important;
 }
-
+.accordion-button{
+  font-size: 12px !important;
+}
   }
 
 .close{
@@ -302,7 +304,7 @@ textarea:hover{
 /* Animation */
 .typewriter-animation {
 animation: 
-  typewriter 2s steps(50) 1s 1 normal both, 
+  typewriter 0.5s steps(50) 1s 1 normal both, 
   blinkingCursor 500ms steps(50) infinite normal;
 }
 @keyframes typewriter {

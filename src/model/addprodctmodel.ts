@@ -41,9 +41,7 @@ export class AddressInfoModel{
 
 export class PaymentModeModel{
     CardNumber:string;
-        Year:string;
-    
+    Year:string;
     Month:string;
-    
     CCV:string;
 }

@@ -206,12 +206,100 @@
                 </h2>
                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                   <div class="accordion-body">
+                    
+                    <form #paymentForm="ngForm" (ngSubmit)="nextpaycard()" class="payment-container">
+  
+                      <!-- Card Number -->
+                      <div class="mb-3">
+                        <input type="text" 
+                          class="form-control form-control-sm" 
+                          placeholder="Card Number"
+                          name="CardNumber"
+                          [(ngModel)]="paymodel.CardNumber"
+                          #cardNumberRef="ngModel"
+                          pattern="[0-9]*" 
+                          minlength="16" 
+                          maxlength="16" 
+                          required>
+                        
+                        <div *ngIf="cardNumberRef.invalid && cardNumberRef.touched" class="text-danger small mt-1">
+                          Card Number must be 16 digits.
+                        </div>
+                      </div>
+                    
+                      <!-- Month & Year -->
+                      <div class="d-flex gap-2">
+                        
+                        <!-- Expiry Month -->
+                        <select class="form-select form-select-sm" 
+                          [(ngModel)]="paymodel.Month"
+                          name="Month"
+                          #monthRef="ngModel"
+                          required>
+                          <option value="" disabled selected>Month</option>
+                          <option *ngFor="let m of months" [value]="m">{{ m }}</option>
+                        </select>
+                        
+                        <!-- Expiry Year -->
+                        <select class="form-select form-select-sm" 
+                          [(ngModel)]="paymodel.Year"
+                          name="Year"
+                          #yearRef="ngModel"
+                          required>
+                          <option value="" disabled selected>Year</option>
+                          <option *ngFor="let y of years" [value]="y">{{ y }}</option>
+                        </select>
+                      </div>
+                    
+                      <div *ngIf="(monthRef.invalid || yearRef.invalid) && (monthRef.touched || yearRef.touched)" class="text-danger small mt-1">
+                        Expiration date is required.
+                      </div>
+                    
+                      <!-- CVV -->
+                      <div class="mt-2 d-flex align-items-center justify-content-between">
+                        
+                        <div style="width: 40%;">
+                          <input type="text" 
+                            class="form-control form-control-sm" 
+                            placeholder="CVV"
+                            name="CCV"
+                            [(ngModel)]="paymodel.CCV"
+                            #cvvRef="ngModel"
+                            pattern="[0-9]{3,4}"
+                            minlength="3" 
+                            maxlength="4" 
+                            required>
+                          
+                          <div *ngIf="cvvRef.invalid && cvvRef.touched" class="text-danger small mt-1">
+                            CVV must be 3 or 4 digits.
+                          </div>
+                        </div>
+                        
+                        <div style="width: 40%;">
+                          <small class="text-muted" style="font-size: 8px !important;line-height: 2px !important;">
+                            3 or 4 digits usually found on the signature strip.
+                          </small>
+                        </div>
+                    
+                      </div>
+                    
+                      <!-- Submit Button -->
+                      <button type="submit" class="btn btn-proceed mt-3" 
+                        style="width: 100%; background-color: #4cd137; border-radius: 40px !important; font-size: 13px; color: #fff;"
+                        [disabled]="paymentForm.invalid">
+                        Pay {{totalPrice}}
+                      </button>
+                    
+                    </form>
+                    
+
+<!-- 
                     <div class="payment-container">
                       <div class="mb-3">
                           <input type="text"  (blur)="OnBlurNumber($event)"   [(ngModel)]="paymodel.CardNumber"  pattern="[0-9]*"  class="form-control form-control-sm" placeholder="Card Number" minlength="16" maxlength="16">
                       </div>
                       <div class="d-flex gap-2">
-                          <select class="form-select form-select-sm">
+                          <select class="form-select form-select-sm"  [(ngModel)]="paymodel.Month">
                               <option selected>Month</option>
                               <option>01</option>
                               <option>02</option>
@@ -227,7 +315,7 @@
                               <option>12</option>
                           </select>
                   
-                          <select class="form-select form-select-sm">
+                          <select class="form-select form-select-sm"  [(ngModel)]="paymodel.Year">
                               <option selected>Year</option>
                               <option>2025</option>
                               <option>2026</option>
@@ -242,12 +330,14 @@
                           <input type="text" pattern="[0-9]*" [(ngModel)]="paymodel.CCV"  (blur)="OnBlurCCV($event)" class="form-control form-control-sm" placeholder="CVV" minlength="3" maxlength="3">
                         </div>
                         <div  style="width: 40%;">
-                          <small class="text-muted" style="font-size: 8px !important;line-height: 5px !important;">3 or 4 digits usually found on the signature strip</small>
+                        <div>
+                          <small class="text-muted" style="font-size: 8px !important;line-height: 2px !important;">3 or 4 digits usually found on the signature strip</small>
+                        </div>
                         </div>
                       </div>
                   
                       <button class="btn btn-proceed mt-3" (click)="nextpay()" style="width: 100%;background-color: #4cd137; border-radius: 40px !important;font-size: 13px ;color:#fff;">pay {{totalPrice}}</button>
-                  </div>
+                  </div> -->
                   </div>
                 </div>
               </div>
