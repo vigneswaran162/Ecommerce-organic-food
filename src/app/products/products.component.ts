@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule, } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
@@ -17,7 +17,7 @@ export class ProductsComponent {
   CartDetailsDet: any;
   searchText: string = ''; 
   Category:any
-  isLoading:boolean =false;
+  isLoading  = false ;
 constructor (private service:ProductsService, private route: ActivatedRoute,private router:Router
 ){}
 async ngOnInit() {
@@ -36,10 +36,10 @@ async ngOnInit() {
 
 
 async GetProducts(param:any){
-  this.isLoading =true
+  this.isLoading = false
   let response:any = await this.service.GetProductDetails(param).catch(err=>{
       alert(err.message)
-      this.isLoading =false
+      this.isLoading = true
   })
   if(response != undefined){
     this.ProctDetails  = response.data
@@ -58,10 +58,10 @@ async GetProducts(param:any){
   CartQuantity: 1 ,
   Price:0
 }));
-this.isLoading =false
+this.isLoading = true
 
   }else{
-    this.isLoading =false
+    this.isLoading = true
     alert(response.returnerror)
   }
 }
@@ -125,12 +125,14 @@ BuyNow(item:any){
 
 
 getFilteredProducts() {
-  this.isLoading = true;
+  this.isLoading = false;
+
+  console.log(this.isLoading)
   const filteredProducts = this.ProctDetails.filter((item: any) =>
     item.ProductName.toLowerCase().includes(this.searchText.toLowerCase())
   );
 
-  this.isLoading = false; 
+  this.isLoading = true; 
 
   return filteredProducts;
 }
@@ -138,7 +140,7 @@ getFilteredProducts() {
 
 
 async SelecCategory(){
-  this.isLoading = true
+  this.isLoading = false
   let response:any = await this.service.GetProductDetails(this.Category).catch(err=>{
       alert(err.message)
       this.isLoading =false
@@ -158,9 +160,9 @@ async SelecCategory(){
   CartQuantity: 1 ,
   Price:0
 }));
-this.isLoading =false
+this.isLoading =true
   }else{
-    this.isLoading =false
+    this.isLoading =true
     alert(response.returnerror)
   }
 }

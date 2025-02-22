@@ -84,6 +84,6 @@
 
 
 
-<div class="loading-overlay" *ngIf="isLoading">
+<div class="loading-overlay" [hidden]="isLoading">
   <div class="loading-spinner"> <img src="/assets/healthy-food.gif"  class="img-fluid loadimg"></div>
 </div>
