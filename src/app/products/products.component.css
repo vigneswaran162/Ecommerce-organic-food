@@ -212,3 +212,7 @@ select:hover{
 
 
   }
+  footer a{
+    text-decoration: none !important;
+    color: #fff !important;
+  }

@@ -372,3 +372,9 @@ footer  li{
   .swiper-pagination{
     color: rgb(27, 27, 27) !important; 
   }
+
+
+  footer a{
+    text-decoration: none !important;
+    color: #000 !important;
+  }
