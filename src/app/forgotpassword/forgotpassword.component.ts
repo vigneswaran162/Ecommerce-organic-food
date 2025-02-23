@@ -184,4 +184,9 @@ export class ForgotpasswordComponent implements OnInit {
       }
     }
     }
+
+    home(){
+      this.router.navigate([''])
+
+    }
 }
