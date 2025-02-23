@@ -86,16 +86,18 @@ export class ForgotpasswordComponent implements OnInit {
         this.Email =''
       }
     }
-    OnBlurOTP(event:any){
-      let fillter = this.OTPNumberDetails.fillter((i:any)=>i.resetToken == event.target.value)
-      if(fillter.length > 0 ){
-        toastr.success('OTP Number is Valid','');
-        this.isGetOtp = true
-      }else{
-         toastr.error('Invalid OTP Number','');
-         this.OTPNumber = ''
+    OnBlurOTP(event: any) {
+      let filter = this.OTPNumberDetails.filter((i: any) => i.resetToken === event.target.value);
+    
+      if (filter.length > 0) {
+        toastr.success('OTP Number is Valid', '');
+        this.isGetOtp = true;
+      } else {
+        toastr.error('Invalid OTP Number', '');
+        this.OTPNumber = '';
       }
     }
+    
 
     async GetUserDetails(){
       let response:any = await this.pservice.GetUserDetailsAll().catch(err=>{
