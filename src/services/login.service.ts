@@ -23,6 +23,16 @@ export class LoginService {
     let resp = await this.service.get(this.APIUrl).toPromise();
     return resp;
   }
+
+
+  async GetOtpNumber() {
+    this.APIUrl = this.apiurl+'ValidateOtp';
+    let resp = await this.service.get(this.APIUrl).toPromise();
+    return resp;
+  }
+
+
+  
   
 
   async GetOTP(entity:any): Promise<any> {
@@ -39,6 +49,19 @@ export class LoginService {
   return res;
   }
 
+  async UpdatePassword(entity:any): Promise<any> {
+    // this.APIUrl = this.apiurl+'Addproducts';
+    this.APIUrl = this.apiurl+'UpdatePassword';
+  let headers = new HttpHeaders({
+    'content-Type': 'application/json',
+    Accept: 'application/json',
+  });
+  let options = {
+    headers: headers,
+  };
+  let res = await this.service.post(this.APIUrl, entity, options).toPromise()
+  return res;
+  }
 
 
   getToken(): string | null {
@@ -63,5 +86,11 @@ export class LoginService {
       const cart = JSON.parse(storedCart);
       return cart
     }
+  }
+
+
+  isEmailSent(): boolean {
+    const storedCart = localStorage.getItem('EmailSent');
+    return storedCart !== null; 
   }
 }

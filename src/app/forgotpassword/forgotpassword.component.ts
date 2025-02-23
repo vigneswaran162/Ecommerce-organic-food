@@ -3,23 +3,30 @@ import { FormsModule } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
 import { ProductsService } from '../../services/products.service';
+import { CommonModule, NgIf } from '@angular/common';
 declare let toastr: any; 
 
 @Component({
   selector: 'app-forgotpassword',
-  imports: [FormsModule],
+  imports: [FormsModule ,CommonModule,NgIf],
   templateUrl: './forgotpassword.component.html',
   styleUrl: './forgotpassword.component.css'
 })
 export class ForgotpasswordComponent implements OnInit {
   Email:any;
   UserPassword:any;
+  ConPassword:any;
   UserDetails: any;
+  isGetOtp:boolean =false
+  OTPNumber:string;
+  OTPNumberDetails: any;
 
 
-  constructor ( private service:LoginService ,private router:Router ,private pservice:ProductsService){}
+  constructor ( public service:LoginService ,private router:Router ,private pservice:ProductsService){}
     async ngOnInit() {
+      this.isGetOtp = false
       await this.GetUserDetails()
+      await this.GetOtpNumer()
       toastr.options = {
         progressBar: true,
         positionClass: 'toast-top-right',
@@ -51,7 +58,17 @@ export class ForgotpasswordComponent implements OnInit {
         })
         if(response != undefined){
           if(response.Boolval == true){
+             
+            const authData = {
+              Email:this.Email,
+        
+            };
+            localStorage.setItem('EmailSent', JSON.stringify(authData));
+
+
+            event.target.disabled = false;
             toastr.success(response.msg,'');
+         
           }else{
             toastr.error(response.returnerror,'');
             event.target.disabled = false;
@@ -69,7 +86,16 @@ export class ForgotpasswordComponent implements OnInit {
         this.Email =''
       }
     }
-
+    OnBlurOTP(event:any){
+      let fillter = this.OTPNumberDetails.find((i:any)=>i.resetToken == this.OTPNumber)
+      if(fillter){
+        toastr.success('OTP Number is Valid','');
+        this.isGetOtp = true
+      }else{
+         toastr.error('Invalid OTP Number','');
+         this.OTPNumber = ''
+      }
+    }
 
     async GetUserDetails(){
       let response:any = await this.pservice.GetUserDetailsAll().catch(err=>{
@@ -81,4 +107,79 @@ export class ForgotpasswordComponent implements OnInit {
         toastr.error(response.returnerror,'');
       }
     }  
+
+
+    async GetOtpNumer(){
+      let response:any = await this.service.GetOtpNumber().catch(err=>{
+          toastr.error(err.message,'');
+      })
+      if(response != undefined){
+        this.OTPNumberDetails  = response.data
+      }else{
+        toastr.error(response.returnerror,'');
+      }
+    }  
+
+
+    OnBlurPhoneNumber(event:any){
+      if(event.target.value != ""){
+        if (!event.target.validity.valid) { 
+          this.UserPassword =''
+          toastr.info('Password Must be Minimum 4 Characters')
+        }
+      }
+    }
+
+    OnBlurConfrim(event:any){
+     if(this.UserPassword != this.ConPassword){
+      toastr.info('Password and Confirm Password should match');     
+      this.ConPassword =''
+    }
+    }
+
+
+    passformvalidation(){
+      if(this.UserPassword == '' || this.UserPassword == undefined || this.UserPassword == null){
+        toastr.info('Password Cannot Be Blank','');
+        return false
+      }
+      if(this.ConPassword == '' || this.ConPassword == undefined || this.ConPassword == null){
+        toastr.info('Confrim Password Cannot Be Blank','');
+        return false
+      }
+      return true
+    }
+
+    async  UpdatePassword(event:any){
+      if(this.passformvalidation()== true){
+        event.target.disabled = true;
+        const storedCart = localStorage.getItem('EmailSent');
+        let entity
+        if (storedCart) {
+          const parsedCart = JSON.parse(storedCart); 
+           entity = {
+            Email: parsedCart.Email, 
+            Password: this.UserPassword
+          };
+          console.log(entity);
+        }
+    
+        let response:any = await this.service.UpdatePassword(entity).catch(err=>{
+          toastr.error(err.message,'');
+        })
+        if(response != undefined){
+          if(response.Boolval == true){
+            localStorage.removeItem('EmailSent');
+            toastr.success('Your password has been updated successfully!', '');
+            this.router.navigate(['/login'])
+            event.target.disabled = false;
+           
+          }else{
+            toastr.error(response.returnerror,'');
+            event.target.disabled = false;
+    
+          }
+      }
+    }
+    }
 }
