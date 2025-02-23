@@ -160,7 +160,12 @@ p{
   font-size: 10px !important;
 }
 
-
+.fa-xmark{
+  font-size: 15px !important;
+  color: gray !important;
+  cursor: pointer;
+  padding: 0px 10px !important;
+}
 
 .step-number {
   width: 20px;
