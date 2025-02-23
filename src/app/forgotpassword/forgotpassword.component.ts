@@ -64,7 +64,7 @@ export class ForgotpasswordComponent implements OnInit {
         
             };
             localStorage.setItem('EmailSent', JSON.stringify(authData));
-
+            await this.GetOtpNumer()
 
             event.target.disabled = false;
             toastr.success(response.msg,'');
