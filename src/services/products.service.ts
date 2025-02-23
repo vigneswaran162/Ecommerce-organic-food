@@ -50,7 +50,7 @@ export class ProductsService {
     let res = await this.http.get(this.APIUrl).toPromise()
     return res
   }
-
+  
 
   async GetProductLatestAll() {
     this.APIUrl = this.apiurl+'GetProductLatestAll';
@@ -61,6 +61,13 @@ export class ProductsService {
 
   async GetOrderID() {
     this.APIUrl = this.apiurl+'GetOrderID';
+    let res = await this.http.get(this.APIUrl).toPromise()
+    return res
+  }
+
+
+  async GetUserDetailsAll() {
+    this.APIUrl = this.localurl+'GetUserDetailsAll';
     let res = await this.http.get(this.APIUrl).toPromise()
     return res
   }
@@ -93,6 +100,23 @@ async CRUD(entity:any): Promise<any> {
   async orderInsert(entity:any): Promise<any> {
       // this.APIUrl = this.apiurl+'Addproducts';
       this.APIUrl = this.apiurl+'OrdersInsert';
+    let headers = new HttpHeaders({
+      'content-Type': 'application/json',
+      Accept: 'application/json',
+    });
+    let options = {
+      headers: headers,
+    };
+    let res = await this.http.post(this.APIUrl, entity, options).toPromise()
+    return res;
+    }
+
+ 
+
+
+    async Register(entity:any): Promise<any> {
+      // this.APIUrl = this.apiurl+'Addproducts';
+      this.APIUrl = this.localurl+'Register';
     let headers = new HttpHeaders({
       'content-Type': 'application/json',
       Accept: 'application/json',

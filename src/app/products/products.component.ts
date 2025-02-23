@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule, } from '@angular/forms';
 import { CommonModule, NgIf } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { LoginService } from '../../services/login.service';
+declare let toastr: any; 
 
 @Component({
   selector: 'app-products',
@@ -18,10 +20,21 @@ export class ProductsComponent {
   searchText: string = ''; 
   Category:any
   isLoading  = false ;
-constructor (private service:ProductsService, private route: ActivatedRoute,private router:Router
+constructor (private service:ProductsService, private route: ActivatedRoute,private router:Router , public loginservice:LoginService
 ){}
 async ngOnInit() {
   
+
+
+  toastr.options = {
+    progressBar: true,
+    positionClass: 'toast-top-right',
+    timeOut: 3000,
+    preventDuplicates: true,
+    showMethod: 'fadeIn',
+    hideMethod: 'fadeOut',
+    extendedTimeOut: 1000
+  };
   const param = this.route.snapshot.paramMap.get('type')
   if (param != undefined  && param != null) {
       await this.GetProducts(param)
@@ -69,9 +82,13 @@ this.isLoading = true
 
 
 async AddCart(item:any){
-  this.service.addToCart(item);
-  this.AddCartDetails = this.service.GetCartDetails();
-  this.CartDetails()
+  if(this.loginservice.isLoggedIn()){
+    this.service.addToCart(item);
+    this.AddCartDetails = this.service.GetCartDetails();
+    this.CartDetails()
+  }else{
+    toastr.info('You must be logged in to proceed with Add to Cart.','');
+  }
 }
 
 
@@ -116,8 +133,12 @@ minus(item: any) {
 
 
 BuyNow(item:any){
+  if(this.loginservice.isLoggedIn()){
   this.service.addToCart(item);
   this.router.navigate(['/CheckOut'])
+  }else{
+    toastr.info('You must be logged in to proceed with Buy Now.','');
+  }
 }
 
 

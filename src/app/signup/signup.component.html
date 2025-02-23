@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 img-box-5" id="contact">
+        <div class="text-content p-4 " style="width: 27rem;">
+          <h3 class="mb-4">CREATE ACCOUNT</h3>
+          <div class="mb-4">
+            <input type="text"  pattern="[A-Za-z0-9-]*"  [(ngModel)]="model.UserName"   minlength="4"  maxlength="20"
+             class="form-control contact-input" placeholder="UserName" (blur)="OnBlurUserName($event)">
+          </div>
+          <div class="mb-4">
+            <input type="email" [(ngModel)]="model.Email"  pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" (blur)="OnBlurUserEmail($event)" class="form-control contact-input" placeholder="Email Address">
+          </div>
+          <div class="mb-4">
+            <input type="text"  [(ngModel)]="model.PhoneNo" minlength="10"  maxlength="10"  (blur)="OnBlurPhoneNumber($event)"      
+           pattern="[0-9]*" class="form-control contact-input" placeholder="Phone No">
+          </div>
+          <div class="mb-4">
+            <input type="password" [(ngModel)]="model.Password" maxlength="20" minlength="4" class="form-control contact-input" placeholder="Password">
+          </div>
+          <button class="btn1 mb-3" (click)="onsubmit($event)" >Submit</button>
+          <div class="">
+            <p> Already have a account ? <button (click)="login()">Login</button> </p>         
+         </div>
+          
+        </div>
+      </div>
+    </div>
+</div>

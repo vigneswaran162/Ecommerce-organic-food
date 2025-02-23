@@ -47,3 +47,15 @@ export class PaymentModeModel{
     Month:string;
     CCV:string;
 }
+
+
+
+
+export class RegisterModel{
+    UserName:string;
+    PhoneNo: string;
+    Email: string;
+    Password:string;
+    role:string;
+    Status: string;
+}

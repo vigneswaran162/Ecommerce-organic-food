@@ -4,6 +4,8 @@ import { AddproductsComponent } from './addproducts/addproducts.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductsComponent } from './products/products.component';
 import { SwipperComponent } from './swipper/swipper.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 export const routes: Routes = [
    {
@@ -22,5 +24,13 @@ export const routes: Routes = [
    },{
       path:'Swipper',
       component:SwipperComponent
+   },
+   {
+      path:'login',
+      component:LoginComponent
+   },
+   {
+      path:'Register',
+      component:SignupComponent
    }
 ];

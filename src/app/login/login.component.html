@@ -1,0 +1,19 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 img-box-5" id="contact">
+        <div class="text-content p-4 " style="width: 24rem;">
+          <h3 class="mb-4">login</h3>
+          <div class="mb-4">
+            <input type="text" [(ngModel)]="UserName"  class="form-control contact-input" placeholder="UserName">
+          </div>
+          <div class="mb-4">
+            <input type="password"  [(ngModel)]="UserPassword" class="form-control contact-input" placeholder="Password">
+          </div>
+          <button class="btn1 mb-3" (click)="onSubmit($event)">Submit</button>
+          <div class="">
+           <p> Don't have a account ? <button (click)="register()">Create Account</button> </p>         
+        </div>
+        </div>
+      </div>
+    </div>
+</div>

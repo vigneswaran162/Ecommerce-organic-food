@@ -4,7 +4,9 @@ import { Router } from '@angular/router';
 import { ProductsService } from '../../services/products.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule, NgIf } from '@angular/common';
+import { LoginService } from '../../services/login.service';
 declare var Swiper: any;
+declare let toastr: any; 
 
 @Component({
   selector: 'app-main-page',
@@ -25,7 +27,7 @@ export class MainPageComponent implements OnInit {
   CartDetailsDet:any
 
 
-  constructor( private router:Router , private service:ProductsService){}
+  constructor( private router:Router , private service:ProductsService ,public loginservice:LoginService){}
 
 
   async ngOnInit() {
@@ -50,6 +52,19 @@ export class MainPageComponent implements OnInit {
         },
       });
     }, 100);
+
+
+
+    toastr.options = {
+      progressBar: true,
+      positionClass: 'toast-top-right',
+      timeOut: 3000,
+      preventDuplicates: true,
+      showMethod: 'fadeIn',
+      hideMethod: 'fadeOut',
+      extendedTimeOut: 1000
+    };
+
 
     this.isLoading = false
 
@@ -105,10 +120,15 @@ export class MainPageComponent implements OnInit {
 
 
   async AddCart(item:any){
+
+    if(this.loginservice.isLoggedIn()){
     this.service.addToCart(item);
     this.navbar.callNavbar();
     this.AddCartDetails = this.service.GetCartDetails();
     this.CartDetails()
+    }else{
+      toastr.info('You must be logged in to proceed with Add to Cart.','');
+    }
   }
   removeFromCart(index: number) {
     const storedCart = localStorage.getItem('cart');
@@ -166,7 +186,11 @@ export class MainPageComponent implements OnInit {
 
 
   BuyNow(item:any){
-    this.service.addToCart(item);
-    this.router.navigate(['/CheckOut'])
+    if(this.loginservice.isLoggedIn()){
+      this.service.addToCart(item);
+      this.router.navigate(['/CheckOut'])
+    }else{
+      toastr.info('You must be logged in to proceed with Buy Now.','');
+    }
   }
 }

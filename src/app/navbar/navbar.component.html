@@ -23,7 +23,28 @@
         </ul>
        
       </div>
-      <button class="btn13" (click)="onClickModel()"><i class="fa-solid fa-cart-shopping"></i>  <span class="badge bg-danger mt-2 p-1 position-absolute" *ngIf="productslength != 0">{{productslength}}</span></button>
+      <div class="d-flex ">
+
+        <div class="mx-2" *ngIf="!loginservice.isLoggedIn()">
+          <button class="btn13"  (click)="login()"><i class="fa-solid fa-user"></i></button>
+        </div>
+                 
+        <div class="dropdown dropstart  mx-2"  *ngIf="loginservice.isLoggedIn()" >
+          <button class="btn13"  role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-right-from-bracket"></i>
+          </button>
+        
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li class="text-center">{{user.UserName}}</li>
+            <li class="text-center"><button class="dropdown-item" (click)="logout()">Logout</button></li>
+          </ul>
+        </div>
+
+        <div >
+          <button class="btn13" (click)="onClickModel()"><i class="fa-solid fa-cart-shopping"></i>  <span class="badge bg-danger mt-2 p-1 position-absolute" *ngIf="productslength != 0">{{productslength}}</span></button>
+        </div>
+      </div>
+
     </div>
   </nav>
 

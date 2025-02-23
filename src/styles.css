@@ -8,3 +8,23 @@
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: "Montserrat", sans-serif; }
+
+
+
+.toast {
+    background-color: #323232 !important; /* Dark background */
+    color: #ffffff !important; /* White text */
+  }
+  
+  .toast-info {
+    background-color: #000 !important; /* Blue background for info */
+  }
+  
+  .toast-success {
+    background-color: #28a745 !important; /* Green background for success */
+  }
+  
+  .toast-error {
+    background-color: #dc3545 !important; /* Red background for error */
+  }
+  

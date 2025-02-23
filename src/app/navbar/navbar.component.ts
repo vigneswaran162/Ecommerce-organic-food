@@ -3,6 +3,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-navbar',
@@ -19,10 +20,12 @@ export class NavbarComponent implements OnInit{
   AddCartDetails:any;
   CartDetailsDet:any
   showToast: boolean = false;
-  constructor(private service:ProductsService ,private cdr:ChangeDetectorRef,private router:Router){
+  user:any;
+  constructor(private service:ProductsService ,private cdr:ChangeDetectorRef,private router:Router ,public loginservice:LoginService){
   }
   ngOnInit(): void {
     this.productslength = this.service.getProductslength();
+    this.user = this.loginservice.GetuserDetails()
   }
 
 
@@ -148,4 +151,14 @@ export class NavbarComponent implements OnInit{
 
     }
   }
+
+
+  login(){
+    this.router.navigate(['/login'])
+  }  
+  logout(){
+    this.loginservice.logout()
+  }
+
+
 }
