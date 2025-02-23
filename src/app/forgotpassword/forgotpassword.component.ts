@@ -87,8 +87,8 @@ export class ForgotpasswordComponent implements OnInit {
       }
     }
     OnBlurOTP(event:any){
-      let fillter = this.OTPNumberDetails.find((i:any)=>i.resetToken == this.OTPNumber)
-      if(fillter){
+      let fillter = this.OTPNumberDetails.fillter((i:any)=>i.resetToken == event.target.value)
+      if(fillter.length > 0 ){
         toastr.success('OTP Number is Valid','');
         this.isGetOtp = true
       }else{
