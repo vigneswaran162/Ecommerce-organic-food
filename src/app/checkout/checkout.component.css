@@ -151,7 +151,7 @@ p{
 }
 .cart-box{
   width: 100% !important;
-  min-height: 40vh !important;
+  /* min-height: 40vh !important; */
 }
 .accordion-button{
   font-size: 12px !important;

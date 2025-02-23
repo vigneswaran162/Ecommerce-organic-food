@@ -72,9 +72,7 @@
     
       <div class="modal-body">        
         <div class="stepper">
-         <div>
-          <button hidden>h</button>
-         </div>
+        
 
           <div class="steps">
             <div *ngFor="let step of steps; let i = index"
@@ -88,7 +86,7 @@
           </div>
 
           <div>
-          <i class="fa-solid fa-xmark" data-bs-dismiss="modal"></i>
+          <i class="fa-solid fa-xmark" [hidden]="currentStep === 2" data-bs-dismiss="modal"></i>
            </div>
         </div>
         
