@@ -19,10 +19,27 @@ export class LoginService {
 
 
   async Login(UserName: string,Password:string) {
-    this.APIUrl = this.localurl+'Ecommercelogin?UserName='+UserName+'&Password='+Password;
+    this.APIUrl = this.apiurl+'Ecommercelogin?UserName='+UserName+'&Password='+Password;
     let resp = await this.service.get(this.APIUrl).toPromise();
     return resp;
   }
+  
+
+  async GetOTP(entity:any): Promise<any> {
+    // this.APIUrl = this.apiurl+'Addproducts';
+    this.APIUrl = this.apiurl+'forgotpasswordOTP';
+  let headers = new HttpHeaders({
+    'content-Type': 'application/json',
+    Accept: 'application/json',
+  });
+  let options = {
+    headers: headers,
+  };
+  let res = await this.service.post(this.APIUrl, entity, options).toPromise()
+  return res;
+  }
+
+
 
   getToken(): string | null {
     if (isPlatformBrowser(this.platformId)) {

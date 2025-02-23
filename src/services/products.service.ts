@@ -67,7 +67,7 @@ export class ProductsService {
 
 
   async GetUserDetailsAll() {
-    this.APIUrl = this.localurl+'GetUserDetailsAll';
+    this.APIUrl = this.apiurl+'GetUserDetailsAll';
     let res = await this.http.get(this.APIUrl).toPromise()
     return res
   }
@@ -116,7 +116,7 @@ async CRUD(entity:any): Promise<any> {
 
     async Register(entity:any): Promise<any> {
       // this.APIUrl = this.apiurl+'Addproducts';
-      this.APIUrl = this.localurl+'Register';
+      this.APIUrl = this.apiurl+'Register';
     let headers = new HttpHeaders({
       'content-Type': 'application/json',
       Accept: 'application/json',

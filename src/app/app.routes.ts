@@ -6,6 +6,7 @@ import { ProductsComponent } from './products/products.component';
 import { SwipperComponent } from './swipper/swipper.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 
 export const routes: Routes = [
    {
@@ -32,5 +33,8 @@ export const routes: Routes = [
    {
       path:'Register',
       component:SignupComponent
+   },{
+      path:'ForgotPassword',
+      component:ForgotpasswordComponent
    }
 ];
