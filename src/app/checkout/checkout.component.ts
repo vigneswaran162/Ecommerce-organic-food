@@ -4,6 +4,7 @@ import { NgIf, CommonModule } from '@angular/common';  // ✅ Import CommonModul
 import { AddproductModel, AddressInfoModel, PaymentModeModel } from '../../model/addprodctmodel';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService } from '../../services/login.service';
 
 
 @Component({
@@ -22,11 +23,15 @@ export class CheckoutComponent {
   totalPrice: any;
   model:AddressInfoModel;
   paymodel:PaymentModeModel;
-  orderidCount:any
+  orderidCount:any;
+  user:any;
   months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
   years = ['2025', '2026', '2027', '2028', '2029'];
 
-  constructor (private service:ProductsService ,private router:Router){}
+  constructor (private service:ProductsService ,private router:Router ,public loginservice:LoginService){
+    this.user = this.loginservice.GetuserDetails()
+
+  }
 
    async ngOnInit() {
     this.isLoading = true
@@ -179,6 +184,7 @@ async nextpaycard() {
 
 preparemodel(){
   const mod = new AddressInfoModel();
+  mod.UserName = this.user.UserName
   mod.orderId = this.model.orderId;
   mod.Name = this.model.Name;
   mod.PhoneNo = this.model.PhoneNo;
@@ -200,6 +206,7 @@ preparemodel(){
       Rate: this.CartDetailsDet[i].Rate,
       price:  this.CartDetailsDet[i].Price,
       CartQuantity: this.CartDetailsDet[i].CartQuantity,
+      UserName:this.user.UserName
     }
     mod.CartDet.push(obj)
   }

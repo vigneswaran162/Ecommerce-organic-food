@@ -21,6 +21,7 @@ export class AddproductModel{
 
 
 export class AddressInfoModel{
+    UserName:string;
     orderId:string;
     Name: string;
     PhoneNo: string;
