@@ -160,5 +160,8 @@ export class NavbarComponent implements OnInit{
     this.loginservice.logout()
   }
 
+  Orders(){
+    this.router.navigate(['/Orders'])
+  }
 
 }

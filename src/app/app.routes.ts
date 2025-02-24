@@ -7,6 +7,7 @@ import { SwipperComponent } from './swipper/swipper.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { OrdersComponent } from './orders/orders.component';
 
 export const routes: Routes = [
    {
@@ -36,5 +37,9 @@ export const routes: Routes = [
    },{
       path:'ForgotPassword',
       component:ForgotpasswordComponent
+   }
+   ,{
+      path:'Orders',
+      component:OrdersComponent
    }
 ];

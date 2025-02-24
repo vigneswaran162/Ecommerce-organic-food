@@ -206,7 +206,8 @@ preparemodel(){
       Rate: this.CartDetailsDet[i].Rate,
       price:  this.CartDetailsDet[i].Price,
       CartQuantity: this.CartDetailsDet[i].CartQuantity,
-      UserName:this.user.UserName
+      UserName:this.user.UserName,
+      status:'On the way'
     }
     mod.CartDet.push(obj)
   }
