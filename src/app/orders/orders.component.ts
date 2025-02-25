@@ -3,21 +3,24 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { LoginService } from '../../services/login.service';
 import { ProductsService } from '../../services/products.service';
 import { CommonModule, NgIf } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-orders',
-  imports: [NavbarComponent ,NgIf,CommonModule],
+  imports: [NavbarComponent ,NgIf,CommonModule,FormsModule],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.css'
 })
 export class OrdersComponent implements OnInit {
 
-
+  searchText:any;
   isLoading:boolean=false;
   user:any;
   AddressDet:any;
   OrdersDet:any;
-  ProctDetails:any
+  ProctDetails:any;
+  FilteredAddresDet:any;
+  totalPrice: any;
   constructor (private service:LoginService ,private productservice:ProductsService){
     this.user = this.service.GetuserDetails()
 
@@ -82,5 +85,17 @@ export class OrdersComponent implements OnInit {
 
     }
   }
+
+
+  
+
+
+
+
+Addressinfo(item:any){
+  this.FilteredAddresDet = this.AddressDet.find((i:any)=> i.orderId == item.orderId)
+  this.totalPrice = this.FilteredAddresDet.CartDet.reduce((sum: number, item: any) => sum + (item.price || 0), 0);
+
+}
 
 }

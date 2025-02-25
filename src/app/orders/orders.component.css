@@ -30,3 +30,19 @@ img{
 h6{
     font-size: 14px !important;
 }
+
+.btn-dark{
+    border-radius: 40px !important;
+}
+
+span{
+    font-size: 12px !important;
+    line-height: 2px !important;
+}
+
+.text-12{
+    font-size: 12px !important;
+}
+table th ,td{
+    font-size: 10px !important;
+}

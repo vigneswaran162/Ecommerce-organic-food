@@ -9,24 +9,30 @@
                 </div>
                 <div class="col-md-3"></div>
                 <div class="col-md-3 mb-3">
-                    <input class="form-control form-control-sm search"   type="text" placeholder="search...."  aria-label=".form-control-sm example">
+                    <input class="form-control form-control-sm search"  [(ngModel)]="searchText"  type="text" placeholder="search...."  aria-label=".form-control-sm example">
                 </div>
 
-                <div class="col-md-12 p-3 card mb-2" *ngFor="let item of OrdersDet">
+                <div class="col-md-12 p-3 card mb-2" *ngFor="let item of OrdersDet;let i = index">
                     <div class="row">
                         <div class="col-md-4">
                             <img [src]="item.ProductImage" class="card-img-top P-3" alt="Tomato">
                         </div>
-                        <div class="col-md-6">
-                          <h6>Order ID:   {{ item.orderId }}</h6>  
+                        <div class="col-md-8">
+                         <div class="d-flex align-items-center justify-content-between">
+                            <h6>Order ID:   {{ item.orderId }}</h6>   <button type="button"  class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal+i">
+                                <i class="fa-solid fa-info fa-bounce"></i>                              </button>
+                         </div>
                           <h6>Product Name:   {{ item.ProductName }}</h6>
                           <h6>Quantity:   {{ item.CartQuantity }}</h6>
                           <h6>Price:   {{ item.price }}</h6>
                           <h6>Delivery Status: {{ item.status }}</h6>
                         </div>
+                       
+
+               
 
                     </div>
-                   
+   
             </div>
 
         </div>
@@ -40,3 +46,64 @@
     <div class="loading-spinner"> <img src="/assets/healthy-food.gif"  class="img-fluid loadimg"></div>
   </div>
   
+
+
+
+
+  
+  <!-- Modal -->
+  <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="order-summary">
+                        <h6>Item Details</h6>
+
+                        <table class="table table-responsive table-bordered order-summary">
+                            <tr>
+                              <th>PRODUCT NAME</th>
+                              <th>RATE</th>
+                              <th>QUANTITY</th>
+                              <th>PRICE</th>
+                            </tr>
+                            <tr  *ngFor="let item of FilteredAddresDet.CartDet;let i = index ">
+                                <td>{{item.ProductName}}</td>
+                                <td>{{item.Rate}}</td>
+                                <td>{{item.CartQuantity}}</td>
+                                <td>₹ {{item.price}}</td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td></td>
+                              <td>Grand Total:</td>
+                              <td>₹ {{totalPrice}}</td>
+                            </tr>
+                          </table>
+                  </div>
+            <div class="address">
+                        <h6>Shipping Address</h6>
+                        <span>Name: {{FilteredAddresDet.Name}}</span> <br>
+                        <span>Address: {{FilteredAddresDet.Address}}</span> <br>
+                        <span>City: {{FilteredAddresDet.City}}</span> <span>City: {{FilteredAddresDet.PinCode}}</span> <br>
+                        <span>State: {{FilteredAddresDet.State}}</span> <span>Country: {{FilteredAddresDet.Country}}</span> <br>
+        </div>
+         <div class="address mb-2">
+            <h6>Updates sent to</h6>
+            <h6 class="text-muted text-12">{{FilteredAddresDet.PhoneNo}}</h6>
+            <h6 class="text-muted text-12">{{user.Email}}</h6>
+           </div>
+           <div>
+            <h6>Payment Information</h6>
+            <h6 class="text-muted text-12">{{FilteredAddresDet.PaymentMode}}</h6>
+
+           </div>
+       
+      </div>
+    </div>
+  </div> -->
