@@ -27,6 +27,7 @@ export class OrdersComponent implements OnInit {
   }
 
   async ngOnInit() {
+  
     await this.GetProducts()
     await this.GetorderID(this.user.UserName)
 
