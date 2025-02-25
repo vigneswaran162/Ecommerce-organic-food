@@ -4,8 +4,7 @@ import { LoginService } from '../../services/login.service';
 import { ProductsService } from '../../services/products.service';
 import { CommonModule, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import jsPDF from 'jspdf';
-import autoTable from 'jspdf-autotable';
+
 @Component({
   selector: 'app-orders',
   imports: [NavbarComponent ,NgIf,CommonModule,FormsModule],
@@ -102,37 +101,7 @@ Addressinfo(item:any){
 
 
 generatePDF() {
-  const doc = new jsPDF();
-  doc.setFontSize(14);
-  doc.text('ORGANIC', 160, 15);
-  doc.setFontSize(18);
-  doc.text('Tax Invoice', 14, 25);
-  doc.setFontSize(12);
-  doc.text('Bill To / Ship To:', 14, 35);
-  doc.text(`OrderId: ${this.FilteredAddresDet?.orderId || ''}`, 14, 42);
-
-  doc.text(`Name: ${this.FilteredAddresDet?.Name || ''}`, 14, 49);
-
-  doc.text(`Address: ${this.FilteredAddresDet?.Address || ''}`, 14, 59);
-  doc.text(`City: ${this.FilteredAddresDet?.City || ''}, PinCode: ${this.FilteredAddresDet?.PinCode || ''}`, 14, 66);
-  doc.text(`State: ${this.FilteredAddresDet?.State || ''}, Country: ${this.FilteredAddresDet?.Country || ''}`, 14, 73);
-  autoTable(doc, {
-    startY: 83, // Adjust spacing before table
-    head: [['Product Name', 'Rate', 'Quantity', 'Price']],
-    body: this.FilteredAddresDet?.CartDet?.map((item: any) => [
-      item.ProductName, item.Rate, item.CartQuantity,item.price
-    ]) || [],
-    theme: 'grid',
-  });
-
-  const finalY = (doc as any).lastAutoTable?.finalY || 90; // Ensure fallback Y value
-
-
-  doc.setFontSize(14);
-  doc.text(`Grand Total:  ${this.totalPrice || 0}`, 14, finalY + 10);
-
-
-  doc.save(`order-summary-${this.FilteredAddresDet?.orderId || 'unknown'}.pdf`);
+ 
 
 }
 
