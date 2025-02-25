@@ -49,3 +49,12 @@ table th ,td{
 h5 span{
     font-size: 13px !important;
 }
+
+.Pdf{
+    background-color: #eb3b5a !important;
+    padding: 8px !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 5px !important;
+
+}

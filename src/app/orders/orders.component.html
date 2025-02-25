@@ -101,9 +101,13 @@
            <div>
             <h6>Payment Information</h6>
             <h6 class="text-muted text-12">{{FilteredAddresDet?.PaymentMode}}</h6>
-
+    
            </div>
        
       </div>
     </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <button type="button" class="Pdf" (click)="generatePDF()">Get Invoice</button>
   </div>
