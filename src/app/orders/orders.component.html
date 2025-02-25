@@ -1,18 +1,42 @@
 <app-navbar></app-navbar>
-<div class="container-fluid">
+<div class="container-fluid" style="background-color: #dfe6e9;">
     <div class="row d-flex align-items-center justify-content-center">
-        <div class="col-md-8 px-5" style="margin-top: 100px;">
+        <div class="col-md-7 p-5 bg-light" style="margin-top: 70px;min-height:90vh ;">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 mb-3">
                  <h4 class="titel1">All orders</h4>
                  <span >from anytime</span>
                 </div>
                 <div class="col-md-3"></div>
-                <div class="col-md-3">
+                <div class="col-md-3 mb-3">
                     <input class="form-control form-control-sm search"   type="text" placeholder="search...."  aria-label=".form-control-sm example">
                 </div>
+
+                <div class="col-md-12 p-3 card mb-2" *ngFor="let item of OrdersDet">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img [src]="item.ProductImage" class="card-img-top P-3" alt="Tomato">
+                        </div>
+                        <div class="col-md-6">
+                          <h6>Order ID:   {{ item.orderId }}</h6>  
+                          <h6>Product Name:   {{ item.ProductName }}</h6>
+                          <h6>Quantity:   {{ item.CartQuantity }}</h6>
+                          <h6>Price:   {{ item.price }}</h6>
+                          <h6>Delivery Status: {{ item.status }}</h6>
+                        </div>
+
+                    </div>
+                   
             </div>
 
         </div>
     </div>
 </div>
+
+
+
+
+<div class="loading-overlay" *ngIf="isLoading">
+    <div class="loading-spinner"> <img src="/assets/healthy-food.gif"  class="img-fluid loadimg"></div>
+  </div>
+  

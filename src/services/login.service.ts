@@ -33,6 +33,12 @@ export class LoginService {
 
 
   
+  async Getorders(UserName:any) {
+    this.APIUrl = this.apiurl+'Getorders?UserName='+UserName;
+    let resp = await this.service.get(this.APIUrl).toPromise();
+    return resp;
+  }
+
   
 
   async GetOTP(entity:any): Promise<any> {
