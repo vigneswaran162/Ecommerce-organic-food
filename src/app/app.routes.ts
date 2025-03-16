@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { OrdersComponent } from './orders/orders.component';
+import { TempComponent } from './temp/temp.component';
 
 export const routes: Routes = [
    {
@@ -41,5 +42,9 @@ export const routes: Routes = [
    ,{
       path:'Orders',
       component:OrdersComponent
+   },
+   {
+      path:'Temp',
+      component:TempComponent
    }
 ];

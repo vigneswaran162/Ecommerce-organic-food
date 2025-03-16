@@ -41,7 +41,7 @@ export class MainPageComponent implements OnInit {
         slidesPerView: 'auto', // Adjust width dynamically
         spaceBetween: 20, // Space between slides
         loop: true,
-        centeredSlides: true, // Center slides
+        // centeredSlides: true, // Center slides
         pagination: {
           el: '.swiper-pagination',
           clickable: true,
