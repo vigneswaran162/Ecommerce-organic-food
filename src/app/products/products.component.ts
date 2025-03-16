@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule, } from '@angular/forms';
@@ -20,11 +20,17 @@ export class ProductsComponent {
   searchText: string = ''; 
   Category:any
   isLoading  = false ;
+  productslength:any;
+
+  @ViewChild(NavbarComponent) navbar!: NavbarComponent;
+
+
+
 constructor (private service:ProductsService, private route: ActivatedRoute,private router:Router , public loginservice:LoginService
 ){}
 async ngOnInit() {
   
-
+  this.productslength = this.service.getProductslength();
 
   toastr.options = {
     progressBar: true,
@@ -84,6 +90,7 @@ this.isLoading = true
 async AddCart(item:any){
   if(this.loginservice.isLoggedIn()){
     this.service.addToCart(item);
+    this.navbar.callNavbar();
     this.AddCartDetails = this.service.GetCartDetails();
     this.CartDetails()
   }else{
